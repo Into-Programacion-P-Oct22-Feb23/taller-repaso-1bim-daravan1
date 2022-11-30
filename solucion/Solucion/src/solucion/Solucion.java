@@ -35,11 +35,11 @@ public class Solucion {
         double sueldo_n;
         double sueldo_subtotal;
         double sueldo_total;
-        double adicional;
+        double adicional  = 0;
         double seguro;
         String cadena = "Nómina de Trabajadores\n\n";
         String opcion;
-        
+
         while (bandera) {
             System.out.println("Ingrese el nombre del empleado");
             nombre = entrada.nextLine();
@@ -51,45 +51,38 @@ public class Solucion {
             horas_matutinas = entrada.nextInt();
             System.out.println("Ingrese las horas nocturnas del empleado");
             horas_nocturnas = entrada.nextInt();
-            
-            sueldo_m = horas_matutinas * valor_matutina ;
-            sueldo_n = horas_nocturnas * valor_nocturna ;
-            
-            if (horas_nocturnas >= 10 ){
-                
-                adicional = (horas_nocturnas * 10)/100 ;
-                sueldo_n = sueldo_n + adicional;
+            sueldo_m = horas_matutinas * valor_matutina;
+            sueldo_n = (horas_nocturnas * valor_nocturna);
+            if (horas_nocturnas >= 10) {
+                sueldo_n = sueldo_n * 1.1 ;
             }
             
             sueldo_subtotal = sueldo_m + sueldo_n;
-            seguro = (sueldo_subtotal * 18)/100;
+            seguro = (sueldo_subtotal * 18) / 100;
             sueldo_total = sueldo_subtotal - seguro;
-            
+
             contador = contador + 1;
-            
-            cadena = cadena + "Rol del trabajador de nombre " + nombre + 
-                    " y cédula " + cedula + ".\n\tHoras matutina trabajadas: "
+
+            cadena = cadena + "Rol del trabajador de nombre " + nombre
+                    + " y cédula " + cedula + ".\n\tHoras matutina trabajadas: "
                     + horas_matutinas + ".\n\tHoras nocturnas trabajadas: "
-                    + horas_nocturnas + ".\n\tSubtotal $" + sueldo_subtotal +
-                    "\n\tSeguro Social $" + seguro + "\n\tTotal a cancelar $" +
-                    sueldo_total + "\n\n";
-            
+                    + horas_nocturnas + ".\n\tSubtotal $" + sueldo_subtotal
+                    + "\n\tSeguro Social $" + seguro + "\n\tTotal a cancelar $"
+                    + sueldo_total + "\n\n";
+
             entrada.nextLine();
-            
+
             System.out.println("Si desea no ingresar mas emplados, escriba S");
             opcion = entrada.nextLine();
-            
-            if (opcion.equals("S")){
+
+            if (opcion.equals("S")) {
                 bandera = false;
-                }
-                
             }
-        
+
+        }
+
         System.out.println(cadena);
         System.out.println("Numero de empleados: " + contador);
-        }
-       
-   
     }
-    
 
+}
